@@ -9,8 +9,8 @@ namespace NvRestInterface.Controllers
         //Returns list of current GPU's attached with their respective adapterID's.
         public object GetOverview()
         {
-            NvAccessor nvInstance = new NvAccessor();
-            return Utilities.Utilities.DeSerialiseObject(nvInstance.GetOverview());
+            NvidiaModelAccessor nvidiaModelInstance = new NvidiaModelAccessor();
+            return Utilities.Utilities.DeSerialiseObject(nvidiaModelInstance.GetOverview());
         }
     }
 }

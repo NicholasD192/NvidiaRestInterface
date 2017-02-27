@@ -2,7 +2,7 @@
 
 namespace NvRestInterface.Models
 {
-    internal class NvidiaGpu
+    internal class NvidiaGpuModel
     {
         public int AdapterIndex;
         private string _gpuName;
@@ -15,11 +15,11 @@ namespace NvRestInterface.Models
         private NvClocks _allClocks;
         private NvPStates _performanceStates;
 
-        public NvidiaGpu(int adapterIndex, NvPhysicalGpuHandle handle, NvDisplayHandle displayHandle)
+        public NvidiaGpuModel(int adapterIndex, NvPhysicalGpuHandle handle, NvDisplayHandle displayHandle)
         {
-            this.AdapterIndex = adapterIndex;
-            this._handle = handle;
-            this._displayHandle = displayHandle;
+            AdapterIndex = adapterIndex;
+            _handle = handle;
+            _displayHandle = displayHandle;
             NVAPI.NvAPI_GPU_GetFullName(handle, out _gpuName);
         }
 
@@ -77,10 +77,29 @@ namespace NvRestInterface.Models
             get
             {
                 Update(NvidiaDataType.Memory);
-
                 return _memoryInfo;
             }
             set { _memoryInfo = value; }
+        }
+
+        public NvClocks GetClockSettings
+        {
+            get
+            {
+                Update(NvidiaDataType.Clocks);
+                return _allClocks;
+            }
+            set { _allClocks = value; }
+        }
+
+        public NvGPUCoolerSettings GetCoolerSettings
+        {
+            get
+            {
+                Update(NvidiaDataType.Cooler);
+                return _coolerSettings;
+            }
+            set { _coolerSettings = value; }
         }
 
         private void UpdateTemperatureSettings()
@@ -98,7 +117,7 @@ namespace NvRestInterface.Models
             _coolerSettings.Version = NVAPI.GPU_COOLER_SETTINGS_VER;
             _coolerSettings.Count = NVAPI.MAX_THERMAL_SENSORS_PER_GPU;
             _coolerSettings.Cooler = new NvCooler[NVAPI.MAX_COOLER_PER_GPU];
-            NvStatus status = NVAPI.NvAPI_GPU_GetCoolerSettings(_handle, 0, ref _coolerSettings);
+            NVAPI.NvAPI_GPU_GetCoolerSettings(_handle, 0, ref _coolerSettings);
         }
 
         private void UpdateMemorySettings()
@@ -106,7 +125,7 @@ namespace NvRestInterface.Models
             _memoryInfo = new NvMemoryInfo();
             _memoryInfo.Version = NVAPI.GPU_MEMORY_INFO_VER;
             _memoryInfo.Values = new uint[NVAPI.MAX_MEMORY_VALUES_PER_GPU];
-            NvStatus status = NVAPI.NvAPI_GPU_GetMemoryInfo(_displayHandle, ref _memoryInfo);
+            NVAPI.NvAPI_GPU_GetMemoryInfo(_displayHandle, ref _memoryInfo);
         }
 
         private void UpdateDriverSettings()

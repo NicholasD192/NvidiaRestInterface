@@ -5,18 +5,18 @@ namespace NvRestInterface.Controllers
 {
     public class MemoryController : ApiController
     {
-        // GET api/Memory/{Graphics card ID}
+        // GET api/Memory/{Graphics card ID} (Memory Settings for all Graphics Cards)
         public object Get(int id)
         {
-            NvAccessor nvInstance = new NvAccessor();
-            return Utilities.Utilities.DeSerialiseObject(nvInstance.GetMemorySettings(id));
+            NvidiaModelAccessor nvidiaModelInstance = new NvidiaModelAccessor();
+            return Utilities.Utilities.DeSerialiseObject(nvidiaModelInstance.GetMemorySettings(id, true));
         }
 
-        // GET: api/Temperature/{Graphics Card ID} (Temperature Settings of particular Graphics Cards.)
+        // GET: api/Temperature/{Graphics Card ID} (Memory Settings of particular Graphics Cards.)
         public object Get()
         {
-            NvAccessor nvInstance = new NvAccessor();
-            return Utilities.Utilities.DeSerialiseObject(nvInstance.GetMemorySettings());
+            NvidiaModelAccessor nvidiaModelInstance = new NvidiaModelAccessor();
+            return Utilities.Utilities.DeSerialiseObject(nvidiaModelInstance.GetMemorySettings());
         }
     }
 }

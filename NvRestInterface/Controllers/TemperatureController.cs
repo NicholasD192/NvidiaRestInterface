@@ -8,15 +8,15 @@ namespace NvRestInterface.Controllers
         // GET: api/Temperature (Temperature Settings for all Graphics Cards.)
         public object Get(int id)
         {
-            NvAccessor nvInstance = new NvAccessor();
-            return Utilities.Utilities.DeSerialiseObject(nvInstance.GetTemperatureSettings(id, true));
+            NvidiaModelAccessor nvidiaModelInstance = new NvidiaModelAccessor();
+            return Utilities.Utilities.DeSerialiseObject(nvidiaModelInstance.GetTemperatureSettings(id, true));
         }
 
         // GET: api/Temperature/{Graphics Card ID} (Temperature Settings of particular Graphics Cards.)
         public object Get()
         {
-            NvAccessor nvInstance = new NvAccessor();
-            return Utilities.Utilities.DeSerialiseObject(nvInstance.GetTemperatureSettings());
+            NvidiaModelAccessor nvidiaModelInstance = new NvidiaModelAccessor();
+            return Utilities.Utilities.DeSerialiseObject(nvidiaModelInstance.GetTemperatureSettings());
         }
     }
 }

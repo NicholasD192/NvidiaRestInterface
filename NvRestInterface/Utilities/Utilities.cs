@@ -5,7 +5,7 @@ namespace NvRestInterface.Utilities
 {
     public static class Utilities
     {
-        public static void PrintDebug(string debugInfo, bool logToFile = false)
+        public static void PrintDebug(string debugInfo)
         {
             Debug.WriteLine("DEBUG: " + debugInfo);
         }
