@@ -10,7 +10,7 @@ Project should also be compatible with Visual Studio 2015.
 
 ## Dev notes
 
-The API currently has 3 seperate Controllers.
+The API currently has 5 seperate Controllers.
 
 GET api/Nvidia ->
 
@@ -52,14 +52,39 @@ GET api/Memory/{AdapterIndex} ->
   }
 ]
 ```
+Returns the GPU Core, Memory and Shader clock speeds of each graphics card connected.
+If no AdapterIndex is provided memory information from all graphics cards is returned.
+
+GET api/Clock/{AdapterIndex} ->
+```
+[
+  {
+    GPU Core: 405,
+    GPU Memory: 253,
+    GPU Shader: 506
+  }
+]
+```
+Returns the Current, Maximum and Minimum Fan speeds of each graphics card connected.
+If no AdapterIndex is provided memory information from all graphics cards is returned.
+
+GET api/Fan/{AdapterIndex} ->
+```
+[
+  {
+    CurrentSpeed: 16,
+    CurrentMin: 0,
+    CurrentMax: 100
+  }
+]
+```
 ## To Do
 
- - Extend Api to extract CoolerSettings, DriverSettings, ClocksSpeeds
- - Implmenet Architecture to push change settings (Change Fan speeds etc)
-
+ - Implement Architecture to push modifications (Change Fan speeds, overlock etc)
+ - Tidy up solution. 
 
 ## Acknowledgments
-A big thank you to the OpenHardwareMonitor & Newtonsoft.JSON projects.
+OpenHardwareMonitor & Newtonsoft.JSON projects.
 
 https://github.com/openhardwaremonitor
 
