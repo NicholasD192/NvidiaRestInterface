@@ -1,6 +1,6 @@
 # Nvidia Rest Interface
 
-Provides a simple restFul Interface to the low-level Nvidia API.
+Provides a simple restful Interface to the low-level Nvidia API.
 
 ## Run the application:
 
