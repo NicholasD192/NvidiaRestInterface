@@ -8,6 +8,14 @@ If you have Visual Studio 2017 installed, Simply open the project solution and b
 
 The project should also be compatible with Visual Studio 2015.
 
+## Architecture
+
+Each public function in the NvidiaModelAccessor class follows the same methodology. Example below is the call stack for acquiring thermal informatio.
+
+1. NvidiaModelAccessor.GetTemperatureSettings() -> Called from the constructor.
+2. NvidiaGpuModel.GetThermalSettings() -> Returns unformatted data from NvidiaGPUModel class to the Accessor
+3. ConvertTemperatureSettings() -> Reformats data into an array that can be easily converted into JSON.
+
 ## Dev Notes
 
 The API currently has 5 separate Controllers.
