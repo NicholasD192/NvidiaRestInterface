@@ -1,20 +1,20 @@
 # Nvidia Rest Interface
 
-Provides a simple RestFul Interface to the low level Nvidia API.
+Provides a simple restFul Interface to the low-level Nvidia API.
 
 ## Run the application:
 
 If you have Visual Studio 2017 installed, Simply open the project solution and build the project.
 
-Project should also be compatible with Visual Studio 2015.
+The project should also be compatible with Visual Studio 2015.
 
-## Dev notes
+## Dev Notes
 
-The API currently has 5 seperate Controllers.
+The API currently has 5 separate Controllers.
 
 GET api/Nvidia ->
 
-Returns a list of Graphics cards currenlty in use with their respective adapter index.
+Returns a list of Graphics cards currently in use with their respective adapter index.
 These Index's can then be used in further API calls for specific graphics cards.
 ```
 {
@@ -78,10 +78,12 @@ GET api/Fan/{AdapterIndex} ->
   }
 ]
 ```
+
 ## To Do
 
+ - More Proficient Error Handling
  - Implement Architecture to push modifications (Change Fan speeds, overlock etc)
- - Tidy up solution. 
+ - Extend API to DriverSettings / Performance States.
 
 ## Acknowledgments
 OpenHardwareMonitor & Newtonsoft.JSON projects.
